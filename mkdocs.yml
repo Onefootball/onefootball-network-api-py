@@ -1,0 +1,10 @@
+site_name: onefootball-network-api-py
+nav:
+  - Home: /
+theme:
+  name: material
+  palette:
+    primary: white
+    accent: purple
+markdown_extensions:
+  - pymdownx.snippets
