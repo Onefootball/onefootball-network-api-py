@@ -1,14 +1,20 @@
+"""OneFootball Network API client package."""
 import pathlib
-from setuptools import setup, find_packages
+
+from setuptools import find_packages, setup
 
 
-def read(fname):
+def _read(fname: str) -> str:
     with open(pathlib.Path(fname)) as fh:
         data = fh.read()
     return data
 
 
-base_packages = ["Click>=7.0", "rich>=5.1.0"]
+base_packages = [
+    "rich>=5.1.0",
+    "pydantic==1.6.1",
+    "requests==2.24.0",
+]
 
 dev_packages = [
     "jupyterlab>=0.35.4",
@@ -30,7 +36,7 @@ setup(
     name="onefootball_network",
     version="0.0.1",
     packages=find_packages(exclude=["data", "docs", "notebooks"]),
-    long_description=read("readme.md"),
+    long_description=_read("readme.md"),
     install_requires=base_packages,
     entry_points={"console_scripts": ["onefootball_network = onefootball_network.cli:cli"]},
     extras_require={"dev": dev_packages},
