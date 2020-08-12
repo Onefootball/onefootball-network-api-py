@@ -1,10 +1,48 @@
 site_name: onefootball-network-api-py
+repo_url: https://github.com/Onefootball/onefootball-network-api-py
+site_url: http://Onefootball.github.io/onefootball-network-api-py
+site_description: Python client for the OneFootball Network API.
+site_author: Louis Guitton
+site_dir: public
+
 nav:
-  - Home: /
+  - Home:
+      - index.md
+  - Reference:
+      - client: reference/client.md
+      - models: reference/models.md
+
 theme:
   name: material
+  custom_dir: theme/
+  icon:
+    logo: material/library
+  feature:
+    tabs: true
   palette:
     primary: white
-    accent: purple
+    accent: lime
+
 markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - codehilite
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.snippets
+
+plugins:
+  - mkdocstrings:
+      default_handler: python
+      handlers:
+        python:
+          rendering:
+            show_source: false
+      watch:
+        - onefootball_network
+  - search
+  - git-revision-date-localized:
+      type: date
+
+copyright: Copyright &copy; 2020 <a href="https://twitter.com/Onefootball">Onefootball</a>, Maintained by <a href="https://twitter.com/louis_guitton">Louis</a>.

@@ -28,12 +28,19 @@ dev_packages = [
     "mkdocstrings>=0.11.0",
 ]
 
+docs_packages = [
+    "mkdocs",
+    "mkdocs-material==4.6.3",
+    "mkdocs-material-extensions==1.0b2",
+    "mkdocs-git-revision-date-localized-plugin==0.5.0",
+    "mkdocstrings",
+]
+
 setup(
     name="onefootball_network",
-    version="0.0.1",
+    version="0.1.0",
     packages=find_packages(exclude=["data", "docs", "notebooks"]),
     long_description=_read("readme.md"),
     install_requires=base_packages,
-    entry_points={"console_scripts": ["onefootball_network = onefootball_network.cli:cli"]},
-    extras_require={"dev": dev_packages},
+    extras_require={"dev": dev_packages, "docs": docs_packages},
 )

@@ -1,7 +1,6 @@
 """OneFootball Network API client."""
 import json
 
-from enum import Enum
 from typing import Any, Optional, Union
 
 import requests
@@ -21,7 +20,7 @@ from onefootball_network.models import (
 class Settings(BaseSettings):
     """Settings for API client, parsed from environment variables."""
 
-    base_url: HttpUrl = "https://network-api.onefootball.com"  #  type: ignore
+    base_url: HttpUrl = "https://network-api.onefootball.com"  # type: ignore
     login: str
     password: str
 

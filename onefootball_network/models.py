@@ -5,11 +5,9 @@ from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
 
-from lxml import html
+from lxml import html  # noqa: S410, we trust incoming HTML
 from pydantic import BaseModel, HttpUrl, validator
 from pydantic.fields import Field
-
-from onefootball_network import LOGGER
 
 
 class LoginResponse(BaseModel):
@@ -43,6 +41,15 @@ class HtmlBody(str):
 
     @classmethod
     def __get_validators__(cls):
+        """Yield sequence of validators for pydantic.
+
+        One or more validators may be yielded which will be called in the
+        order to validate the input, each validator will receive as an input
+        the value returned from the previous validator.
+
+        Yields:
+            sequence of field validations.
+        """
         yield cls.validate
 
     @classmethod

@@ -16,6 +16,8 @@ test:
 	pytest tests
 
 docs:
+	python -m pip install -e ".[docs]"
+	mkdir -p theme
 	mkdocs build --clean --site-dir public
 
 serve-docs:

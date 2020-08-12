@@ -1,11 +1,12 @@
 """onefootball_network module."""
+# isort: skip-file
 import logging
 
 from rich.logging import RichHandler
-
-from .client import OneFootballNetwork  # isort: skip
 
 
 LOGGER = logging.getLogger(__name__)
 LOGGER.setLevel(logging.INFO)
 LOGGER.addHandler(RichHandler())
+
+from onefootball_network.client import OneFootballNetwork

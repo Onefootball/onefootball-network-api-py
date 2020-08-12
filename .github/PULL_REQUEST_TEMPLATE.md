@@ -1,5 +1,5 @@
 <!---
-If there is a ticket, add the ticket as a prefix like so: [DATA-xxxx] 
+If there is a ticket, add the ticket as a prefix like so: [DATA-xxxx]
 
 Provide a short summary in the Title above. Examples of good PR titles:
 * "Feature: add so-and-so models"
