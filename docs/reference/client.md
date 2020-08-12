@@ -1,3 +1,3 @@
-# client
+# OneFootballNetwork
 
-::: onefootball_network.client
+::: onefootball_network.client.OneFootballNetwork

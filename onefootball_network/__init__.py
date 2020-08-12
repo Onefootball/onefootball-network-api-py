@@ -10,3 +10,4 @@ LOGGER.setLevel(logging.INFO)
 LOGGER.addHandler(RichHandler())
 
 from onefootball_network.client import OneFootballNetwork
+from onefootball_network.models import DetailedPost, NewPost, PostsResponse, PostUpdate

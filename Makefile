@@ -1,5 +1,3 @@
-.PHONY: docs
-
 install:
 	pip install --upgrade pip
 	pip install -e .
@@ -15,6 +13,7 @@ lint:
 test:
 	pytest tests
 
+.PHONY: docs
 docs:
 	python -m pip install -e ".[docs]"
 	mkdir -p theme
@@ -34,3 +33,12 @@ clean:
 
 build:
 	docker build -t onefootball_network .
+
+.PHONY:dist
+dist:
+	python3 -m pip install --upgrade setuptools wheel
+	python3 setup.py sdist bdist_wheel
+
+upload:
+	python3 -m pip install --upgrade twine
+	python3 -m twine upload --skip-existing --config-file .pypirc dist/*

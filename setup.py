@@ -38,9 +38,10 @@ docs_packages = [
 
 setup(
     name="onefootball_network",
-    version="0.1.0",
+    version="0.1.1",
     packages=find_packages(exclude=["data", "docs", "notebooks"]),
     long_description=_read("readme.md"),
+    long_description_content_type="text/markdown",
     install_requires=base_packages,
     extras_require={"dev": dev_packages, "docs": docs_packages},
 )
