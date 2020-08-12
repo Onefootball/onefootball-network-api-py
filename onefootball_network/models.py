@@ -1,10 +1,15 @@
 """Pydantic models for OneFootball Network API."""
+import warnings
+
 from datetime import datetime
 from enum import Enum
 from typing import List, Optional, Union
 
+from lxml import html
 from pydantic import BaseModel, HttpUrl, validator
 from pydantic.fields import Field
+
+from onefootball_network import LOGGER
 
 
 class LoginResponse(BaseModel):
@@ -28,6 +33,54 @@ class Language(str, Enum):
     ru = "ru"
 
 
+class HtmlBody(str):
+    """Partial validation for HTML bodies of articles.
+
+    Ref:
+        - https://pydantic-docs.helpmanual.io/usage/types/#classes-with-__get_validators__
+        - https://static.onefootball.com/onefootball-network/technical-documentation/html-guidelines
+    """
+
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        if not isinstance(v, str):
+            raise TypeError("string required")
+        tree = html.fromstring(v)
+
+        unsupported_types = [
+            c
+            for c in tree.getchildren()
+            if c.tag
+            not in (
+                "p",
+                "h1",
+                "h2",
+                "h3",
+                "h4",
+                "h5",
+                "h6",
+                "hr",
+                "a",
+                "li",
+                "ol",
+                "ul",
+                "img",
+                "blockquote",
+                "iframe",
+            )
+        ]
+        for child in unsupported_types:
+            warnings.warn(
+                f"The following non-supported HTML elements will be ignored: <{child.tag}>", Warning
+            )
+
+        return cls(v)
+
+
 class PostUpdate(BaseModel):
     """Article attributes that can be updated."""
 
@@ -46,7 +99,7 @@ class PostUpdate(BaseModel):
         description="The time that the article was last updated. If in doubt, use the current time.",
     )
     title: str = Field(..., min_length=1, description="The title of the article.")
-    content: str = Field(
+    content: HtmlBody = Field(
         ...,
         description="""The content of the article, which must be in correctly-formatted HTML.
         Please see [this link](https://static.onefootball.com/onefootball-network/technical-documentation/html-guidelines)

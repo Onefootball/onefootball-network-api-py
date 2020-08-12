@@ -3,7 +3,7 @@ import logging
 
 from rich.logging import RichHandler
 
-from .client import OneFootballNetwork
+from .client import OneFootballNetwork  # isort: skip
 
 
 LOGGER = logging.getLogger(__name__)

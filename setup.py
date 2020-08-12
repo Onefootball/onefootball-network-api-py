@@ -10,11 +10,7 @@ def _read(fname: str) -> str:
     return data
 
 
-base_packages = [
-    "rich>=5.1.0",
-    "pydantic==1.6.1",
-    "requests==2.24.0",
-]
+base_packages = ["rich>=5.1.0", "pydantic==1.6.1", "requests==2.24.0", "lxml==4.5.2"]
 
 dev_packages = [
     "jupyterlab>=0.35.4",

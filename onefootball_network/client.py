@@ -21,7 +21,7 @@ from onefootball_network.models import (
 class Settings(BaseSettings):
     """Settings for API client, parsed from environment variables."""
 
-    base_url: HttpUrl = HttpUrl("https://network-api.onefootball.com")
+    base_url: HttpUrl = "https://network-api.onefootball.com"  #  type: ignore
     login: str
     password: str
 

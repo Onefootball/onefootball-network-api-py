@@ -14,7 +14,7 @@ lines_between_types=1
 multi_line_output=3
 not_skip="__init__.py"
 use_parentheses=true
-known_third_party = ["pydantic", "pytest", "requests", "rich", "setuptools"]
+known_third_party = ["lxml", "pydantic", "pytest", "requests", "rich", "setuptools"]
 
 [tool.pytest.ini_options]
 addopts = "-ra -q --disable-warnings"
